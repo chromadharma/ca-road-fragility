@@ -1,0 +1,273 @@
+<title>One Way Out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1B1B18;
+    --muted: #6B6A63;
+    --rule: #D8D5C9;
+    --panel: #F4F3EE;
+    --violet: #46106F;
+    --teal: #1F8A84;
+    --spark: #B5DE2B;
+    --fig-bg: #FFFFFF;
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --text: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --measure: 68ch;
+    --wide: 1180px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #121210; --ink: #EDEBE2; --muted: #A9A79D; --rule: #3A3935;
+      --panel: #1C1C19; --violet: #B79CE3; --teal: #4CC3A6; --spark: #C7EA46; --fig-bg: #FFFFFF;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121210; --ink: #EDEBE2; --muted: #A9A79D; --rule: #3A3935;
+    --panel: #1C1C19; --violet: #B79CE3; --teal: #4CC3A6; --spark: #C7EA46; --fig-bg: #FFFFFF;
+  }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--text); font-size: 1.12rem; line-height: 1.62; }
+  .page { padding-inline: 20px; padding-block: 0 72px; }
+  .col { max-width: var(--measure); margin-inline: auto; }
+  .wide { max-width: var(--wide); margin-inline: auto; }
+
+  /* masthead */
+  .mast { max-width: var(--wide); margin-inline: auto; padding-block: 28px 0; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+          font-family: var(--display); font-stretch: 75%; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .mast a { color: inherit; }
+
+  /* hero */
+  .hero { max-width: var(--wide); margin-inline: auto; padding-block: 48px 24px; }
+  .kicker { font-family: var(--display); font-stretch: 75%; font-weight: 600; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+  h1 { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: clamp(2rem, 5.6vw, 4.9rem); line-height: .98; letter-spacing: -.02em;
+       margin: .35em 0 .3em; text-wrap: balance; max-width: 15ch; overflow-wrap: break-word; }
+  @media (max-width: 640px) { h1 { font-stretch: 100%; max-width: none; } }
+  .dek { font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.45; max-width: 46ch; color: var(--ink); margin: 0; }
+  .byline { font-family: var(--display); font-stretch: 75%; font-size: .95rem; color: var(--muted); margin-top: 18px; letter-spacing: .02em; }
+
+  /* the morning strip: 06:00 to 16:00 */
+  .strip { max-width: var(--wide); margin: 40px auto 8px; overflow-x: clip; }
+  .strip-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-family: var(--display); font-stretch: 75%;
+                font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .track { position: relative; height: 212px; margin-top: 10px; border-top: 1px solid var(--rule); }
+  .tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--rule); }
+  .tick span { position: absolute; bottom: -1.5em; left: -1.3em; font-family: var(--display); font-stretch: 75%; font-size: .8rem; color: var(--muted);
+               font-variant-numeric: tabular-nums; }
+  .ev { position: absolute; top: 0; height: 100%; border-left: 2px dashed var(--violet); }
+  .ev b { position: absolute; left: 6px; white-space: nowrap; font-family: var(--display); font-stretch: 75%; font-weight: 600; font-size: .82rem;
+          color: var(--violet); background: var(--bg); padding-inline: 3px; font-variant-numeric: tabular-nums; }
+  .bar { position: absolute; height: 22px; border-radius: 2px; }
+  .bar i { position: absolute; left: calc(100% + 8px); top: 1px; white-space: nowrap; font-style: normal; font-family: var(--display); font-stretch: 75%;
+           font-size: .85rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .bar.self { background: var(--violet); }
+  .bar.self i { left: 8px; color: #FFFFFF; }
+  .bar.man { background: var(--teal); }
+  .bar.band { background: repeating-linear-gradient(135deg, var(--teal) 0 4px, transparent 4px 8px); opacity: .7; }
+  .strip-note { font-family: var(--display); font-stretch: 75%; font-size: .85rem; color: var(--muted); margin-top: 34px; max-width: 80ch; }
+  @media (max-width: 720px) { .ev b { font-size: .72rem; } .bar i { font-size: .74rem; } }
+
+  /* section nav */
+  nav.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-block: 1px solid var(--rule); margin-block: 56px 0; }
+  nav.toc ol { max-width: var(--wide); margin: 0 auto; padding: 0; list-style: none; display: flex; gap: 0; overflow-x: auto; }
+  nav.toc a { display: block; padding: 12px 18px 12px 0; margin-right: 18px; font-family: var(--display); font-stretch: 75%; font-weight: 600;
+              font-size: .9rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); text-decoration: none; white-space: nowrap; }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--ink); }
+  nav.toc a:focus-visible, a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  nav.toc .n { color: var(--teal); margin-right: 6px; font-variant-numeric: tabular-nums; }
+
+  /* sections */
+  section { padding-top: 64px; scroll-margin-top: 56px; }
+  .label { font-family: var(--display); font-stretch: 75%; font-weight: 600; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); }
+  h2 { font-family: var(--display); font-stretch: 112%; font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.08; letter-spacing: -.01em;
+       margin: .3em 0 .7em; text-wrap: balance; }
+  h3 { font-family: var(--display); font-weight: 700; font-size: 1.2rem; line-height: 1.25; margin: 2em 0 .5em; text-wrap: balance; }
+  p { margin: 0 0 1.05em; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  em { font-style: italic; }
+  .num { font-family: var(--display); font-stretch: 85%; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  figure { margin: 36px auto 40px; }
+  figure img { display: block; width: 100%; height: auto; background: var(--fig-bg); border: 1px solid var(--rule); }
+  figcaption { max-width: var(--measure); margin: 10px auto 0; font-family: var(--display); font-stretch: 80%; font-size: .9rem; line-height: 1.45; color: var(--muted); }
+
+  /* hypotheses ledger */
+  .ledger { display: grid; gap: 0; border-top: 2px solid var(--ink); margin-top: 24px; }
+  .ledger .row { display: grid; grid-template-columns: 7.5rem 1fr; gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--rule); }
+  .verdict { font-family: var(--display); font-stretch: 75%; font-weight: 700; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; padding-top: 4px; }
+  .verdict.held { color: var(--teal); }
+  .verdict.part { color: var(--violet); }
+  .ledger p { margin: 0; }
+  .ledger .said { font-weight: 600; }
+  .ledger .found { color: var(--muted); font-size: 1rem; margin-top: 6px; }
+  @media (max-width: 560px) { .ledger .row { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* three failures */
+  .trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 28px; }
+  .trio div { border-top: 3px solid var(--violet); padding-top: 12px; }
+  .trio div:nth-child(2) { border-top-color: var(--teal); }
+  .trio div:nth-child(3) { border-top-color: var(--muted); }
+  .trio h4 { font-family: var(--display); font-weight: 800; font-size: 1.05rem; margin: 0 0 .4em; }
+  .trio .big { font-family: var(--display); font-stretch: 85%; font-weight: 800; font-size: 1.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .trio p { font-size: 1rem; margin: .5em 0 0; }
+  @media (max-width: 820px) { .trio { grid-template-columns: 1fr; } }
+
+  /* contributions list: these are genuinely a set, not a sequence */
+  .contrib { margin: 20px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+  .contrib li { padding-left: 18px; border-left: 2px solid var(--rule); }
+  .contrib b { font-family: var(--display); font-weight: 700; }
+
+  .limits { background: var(--panel); padding: 20px 22px; margin-top: 28px; font-size: 1rem; }
+  .limits h3 { margin-top: 0; }
+  .src { font-family: var(--display); font-stretch: 80%; font-size: .9rem; line-height: 1.5; color: var(--muted); }
+  .src p { margin-bottom: .6em; }
+  footer { max-width: var(--wide); margin: 72px auto 0; padding-top: 18px; border-top: 1px solid var(--rule); font-family: var(--display); font-stretch: 80%;
+           font-size: .9rem; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  @media (prefers-reduced-motion: no-preference) { .bar { transform-origin: left; animation: grow .9s ease-out both; } }
+  @keyframes grow { from { transform: scaleX(.02); } to { transform: scaleX(1); } }
+</style>
+
+<div class="page">
+  <div class="mast"><span>California road fragility</span><span><a href="https://github.com/chromadharma/ca-road-fragility">Code and data on GitHub</a></span></div>
+
+  <header class="hero">
+    <div class="kicker">Planning · Network science · GIS</div>
+    <h1>One way out, or six that fill too slowly</h1>
+    <p class="dek">California asks its towns to count their evacuation routes. I measured what those routes can carry, and where they run through fire.</p>
+    <div class="byline">Sahasrik Ragani · September 2026</div>
+  </header>
+
+  <div class="strip" role="img" aria-label="The morning of 8 November 2018: the Camp Fire reached Paradise by 07:44; a perfectly managed evacuation ordered at ignition would have finished between {{camp_man_lo_clock}} and {{camp_man_clock}}; left to drivers, {{camp_self_clock}}.">
+    <div class="strip-head"><span>Paradise ridge, 8 November 2018</span><span>{{camp_veh}} vehicles, order assumed at ignition</span></div>
+    <div class="track" id="track">
+      {{strip_ticks}}
+      <div class="ev" style="left:{{x_0630}}%"><b style="top:6px">06:30 ignition</b></div>
+      <div class="ev" style="left:{{x_0725}}%"><b style="top:28px">07:25 Concow burning</b></div>
+      <div class="ev" style="left:{{x_0744}}%"><b style="top:50px">07:44 spot fires in Paradise</b></div>
+      <div class="ev" style="left:{{x_0830}}%"><b style="top:72px">08:30 front at Pentz Rd</b></div>
+      <div class="ev" style="left:{{x_1000}}%"><b style="top:94px">10:00 people trapped in traffic</b></div>
+      <div class="bar self" style="left:{{x_0630}}%; width:{{w_self}}%; top:128px"><i>left to drivers: last car out {{camp_self_clock}}</i></div>
+      <div class="bar man" style="left:{{x_0630}}%; width:{{w_man_lo}}%; top:166px"></div>
+      <div class="bar band" style="left:{{x_man_lo}}%; width:{{w_man_band}}%; top:166px"><i>perfectly managed: {{camp_man_lo_clock}} to {{camp_man_clock}}</i></div>
+    </div>
+    <p class="strip-note">Fire times from NIST's reconstruction (Technical Note 2135). Evacuation times from this study; the managed range reflects missing lane counts on rural roads.</p>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <ol>
+      <li><a href="#context"><span class="n">1</span>Context</a></li>
+      <li><a href="#hypothesis"><span class="n">2</span>Hypothesis</a></li>
+      <li><a href="#results"><span class="n">3</span>Results</a></li>
+      <li><a href="#findings"><span class="n">4</span>Findings</a></li>
+    </ol>
+  </nav>
+
+  <section id="context" class="col">
+    <div class="label">Context and rationale</div>
+    <h2>Why a road map is a fire map</h2>
+    <p>I have been drifting for a while toward the place where two things I like meet: network theory, which is about what holds a system together, and spatial data, which is about where things actually are. Most network science works on graphs that float free of the ground. Most planning work knows exactly where the ground is and treats the network as a list of roads. I wanted one project that would do both honestly, and that would be useful to a planner as well as interesting to a network scientist.</p>
+    <p>Wildfire evacuation is the case where the two cannot be separated. A town's road network is a graph with a capacity on every edge; a fire is a spatial event that deletes edges, and the people on the graph have hours, sometimes less, to get off it. The Camp Fire is the reference case for why this matters. On 8 November 2018 it reached Paradise, California, within about an hour and a quarter of starting, and by ten that morning, in the words of the federal reconstruction, people were "stuck in traffic and trapped in their vehicles" on Pentz Road. At least eighty-five people died.</p>
+    <p>California's response was sensible on paper. Since 2019, Senate Bill 99 has required every city and county to identify residential areas in hazard zones that lack at least two evacuation routes, and AB 747 asks them to assess route capacity. What I noticed, reading those laws next to the Camp Fire, is that Paradise would have passed the first test. It had six routes out. So the question I set myself was sharper than "who has one way out": which communities have too little road capacity for the people behind it, how much of that capacity runs through land CAL FIRE rates as Very High fire hazard, and what could actually be done about it?</p>
+    <p>The project works at two scales. Part A takes the whole California road network as pure topology (about two million junctions) and asks how it comes apart when junctions are lost. Part B puts the roads back on the ground for two places: Butte County, where Paradise is, and the two Los Angeles areas that burned in January 2025, around the Palisades and Altadena. It is a planning, network-science and GIS project; the hazard maps and fire perimeters it uses are themselves built partly from imagery, but no imagery is analysed directly here (that is the next step, below).</p>
+  </section>
+
+  <section id="hypothesis" class="col">
+    <div class="label">Hypothesis</div>
+    <h2>What I expected before running anything</h2>
+    <p>These were written into the design document before any result existed, so they can be held against what came back.</p>
+    <div class="ledger">
+      <div class="row"><div class="verdict held">Held</div><div>
+        <p class="said">Road networks shrug off random damage and collapse when their busiest junctions go, because their connections are even but their traffic is not.</p>
+        <p class="found">Removing the busiest 1% of junctions cut {{a_busy_cut}} of the network off from its main piece; a random 1% cut off {{a_rand_cut}}. The top 1% of junctions carry {{a_load_top1}} of the shortest-path load.</p></div></div>
+      <div class="row"><div class="verdict part">Partly</div><div>
+        <p class="said">Removing the most-connected junctions would look almost the same as removing random ones.</p>
+        <p class="found">True up to about 10% removed; by 20% the most-connected order had collapsed the network while random removal left {{a_rand20}} connected.</p></div></div>
+      <div class="row"><div class="verdict held">Held</div><div>
+        <p class="said">Paradise would not show up as a one-exit town; its problem would be capacity, so a count of routes would call it safe.</p>
+        <p class="found">The model found six independent routes and, without being told, the roads they run on: Skyway, Clark, Pentz, Neal, Honey Run, Highway 32 and the Feather River canyon road.</p></div></div>
+      <div class="row"><div class="verdict held">Held</div><div>
+        <p class="said">Drivers each taking their own best route would carry far less than a coordinated evacuation could (a Crucitti–Latora–Marchiori-style congestion model).</p>
+        <p class="found">Self-routing took a median of {{gap_butte}}× the managed time across Butte communities and {{gap_la}}× across the LA areas. The size of the gap depends on the model; its direction does not.</p></div></div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="col">
+      <div class="label">Results</div>
+      <h2>The network comes apart at its busiest points</h2>
+      <p>Part A treats California's roads as a graph of about two million junctions and removes them in three orders: at random, most-connected first, and busiest first (by how many shortest paths run through each). The random curve bends slowly; the busiest-first curve falls off a cliff at the first percent. The efficiency panel shows something the connectivity panel hides: road networks rarely split apart, they force detours, and efficiency falls much faster than the share of junctions still connected.</p>
+    </div>
+    <figure class="wide"><img src="figures/a1_fragmentation_snap.png" alt="Three panels: share of the network still connected, global efficiency, and the distribution of connections and load, under random, degree-first and busiest-first junction removal." loading="lazy"><figcaption>SNAP roadNet-CA. A second graph built from TIGER data (DIMACS) agreed on the busiest-first collapse but looked far more fragile to random loss; contracting its shape-point chains showed about half of that gap was an artifact of how it was built.</figcaption></figure>
+
+    <div class="col">
+      <h2>{{butte_n_cut}} Butte communities have no way out that avoids Very High hazard</h2>
+      <p>Part B asks, for every community, how many independent routes reach a safe destination (a freeway or major highway outside the High and Very High zones, at least five kilometres away), how many vehicles an hour those routes can carry, and what is left when the roads through Very High land are closed. In Butte County, {{butte_n_cut}} of 30 communities, home to {{butte_pop_cut}} people, have no hazard-free route at all.</p>
+      <p>The Camp Fire is the check on whether any of this is real. Run as one evacuation (Paradise, Magalia and Concow left together, and counting them separately would count the same exits twice), the ridge's bottleneck lands on the roads named in every account of that morning. Its {{camp_veh}} pre-fire vehicles needed {{camp_man_lo}} to {{camp_man}} hours to clear even if perfectly managed, and {{camp_self}} if every driver took their own best route.</p>
+    </div>
+    <figure class="wide"><img src="figures/b_hero_butte.png" alt="Map of Butte County communities shaded by whether a safe exit exists, beside a detail of the Paradise ridge showing its exit roads, their bottleneck sections and the Camp Fire perimeter." loading="lazy"></figure>
+
+    <div class="col">
+      <h2>Two Los Angeles fires failed in different ways</h2>
+      <p>The Palisades and Eaton fires of January 2025 give two very different cases. Every community in the Palisades cluster ({{la_pal_pop}} people) has no way out that avoids Very High hazard, and its evacuation is capped by one road: Palisades Drive, the way down from the Palisades Highlands, at about 950 vehicles an hour. Around Altadena the capacity exists; a managed evacuation clears in under an hour. Left to self-routing, the model sends almost everyone toward one freeway terminus and down a handful of local streets, and the last car is out after {{eaton_self}} hours.</p>
+    </div>
+    <figure class="wide"><img src="figures/b_hero_la.png" alt="Two maps: the Palisades fire cluster with Palisades Drive marked as the binding road, and the Eaton fire cluster with Eaton Canyon Drive marked." loading="lazy"></figure>
+  </section>
+
+  <section id="findings">
+    <div class="col">
+      <div class="label">Findings, analysis, contributions and suggestions</div>
+      <h2>The same label hides three different problems</h2>
+      <p>"No safe way out" sounds like one condition. The three fires say otherwise, and the difference is what decides the price of fixing it.</p>
+    </div>
+    <div class="wide"><div class="trio">
+      <div><h4>Eaton 2025: operations</h4><div class="big">{{eaton_man}} h managed<br>{{eaton_self}} h self-routed</div><p>The roads were there. Phased orders and traffic control are close to free.</p></div>
+      <div><h4>Camp 2018: both</h4><div class="big">{{camp_man_lo}}–{{camp_man}} h managed<br>{{camp_self}} h self-routed</div><p>Too little capacity and a large coordination loss, at the same time.</p></div>
+      <div><h4>Palisades 2025: structure</h4><div class="big">{{pal_man}} h managed<br>{{pal_self}} h self-routed</div><p>One road binds. No amount of management widens a single road.</p></div>
+    </div></div>
+
+    <div class="col">
+      <h3>A ladder, not a pass mark</h3>
+      <p>Because SB 99's two-route test would have certified Paradise, I replaced it with a ladder. The bottom rung is SB 99 itself; the next two ask whether a community can empty in two hours (the time the Camp Fire's main front took to reach Pentz Road) and in one (the time its first spot fires took); the top two ask whether it can do that without driving through Very High, and then High, hazard. No California agency has set a clearance target that I could find, so these come from the Camp Fire's own timeline. Fewer than three residents in ten, across both study areas, can get out within an hour without crossing Very High hazard.</p>
+    </div>
+    <figure class="wide"><img src="figures/c_ladder.png" alt="Stacked bars of Butte County and LA fire-cluster residents by the highest rung of the safety ladder their community meets." loading="lazy"></figure>
+
+    <div class="col">
+      <h3>What each fix buys</h3>
+      <p>For each fire's evacuation group I added one fix at a time: running the evacuation instead of leaving it to drivers, reversing inbound lanes on the roads that bind (contraflow), and adding a lane to whole named roads, greedily, up to five times. Coordination saved between six and thirteen hours per fire. Between 150 and 175 lane-kilometres of widening saved little more than one. On the Paradise ridge, even {{camp_lanekm}} lane-kilometres leave the evacuation at {{camp_widen}} hours, still short of the two-hour rung at its 2018 population. Opening the fire roads (the unpaved tracks and gated service roads that no normal road map counts) would carry Berry Creek and Cohasset over SB 99's two-route line, but gives none of Butte's cut-off communities an exit that avoids Very High hazard; the fire roads run through the same forest.</p>
+    </div>
+    <figure class="wide"><img src="figures/c_fixes.png" alt="Dot chart of clearance hours for the Camp, Palisades and Eaton evacuation groups: self-routed, managed, with contraflow and with widening, against one-hour and two-hour lines." loading="lazy"></figure>
+    <figure class="wide"><img src="figures/c_camp_timeline.png" alt="Timeline of 8 November 2018 comparing the Camp Fire's arrival times with when each evacuation scenario would have finished." loading="lazy"><figcaption>Every bar assumes the order came at 06:30. Any delay moves it right.</figcaption></figure>
+
+    <div class="col">
+      <h3>What this adds</h3>
+      <ul class="contrib">
+        <li><b>A capacity test to set beside SB 99.</b> A reproducible audit that asks what a community's routes can carry and what they run through, not only how many there are, and that agreed with Butte County's own evacuation-constraint map on where the problem sits (while working community by community, where the county works parcel by parcel).</li>
+        <li><b>The road that actually binds.</b> The plain minimum cut for the Palisades group sat far from the fire and hid the problem. Cutting the demand-weighted problem instead, with traffic starting where the vehicles are, names Palisades Drive. That is the version a planner can act on.</li>
+        <li><b>Coordination loss with real capacities.</b> An adaptation of the Crucitti–Latora–Marchiori cascade model with physical road capacity in place of an abstract tolerance, and a like-for-like managed bound, reported as a range because a static model cannot say which reading an evacuation follows.</li>
+        <li><b>A check on how road graphs are built.</b> Two standard California road graphs disagree about random fragility; about half of that disagreement is shape points counted as junctions. Only the busiest-first result survives every version of the graph.</li>
+        <li><b>An engine that is not about California.</b> Nothing in the <code>hazardnet</code> package knows about fire or the state. The next project runs it on Ahmedabad with a flood-depth raster instead.</li>
+      </ul>
+
+      <h3>Suggestions</h3>
+      <p>Run the evacuation before building the road. Phased orders by zone, officers at the intersections the model names, and signal timing for outbound traffic buy more time than any widening I tested, for a fraction of the cost. Build where one road binds, and only there: a second way down for the Palisades Highlands, and for Berry Creek and Cohasset in Butte, the two communities that fail even SB 99. Treat fire-road access as a way to meet SB 99's letter, not its purpose. And for ridges like Paradise, where the doors cannot empty the room in time at any realistic price, the conversation has to move to what a building code already does for a theatre: earlier, forecast-triggered orders, designated refuge areas, and a limit on how many more homes a ridge with six exits should take. My thoughts on that last one are still developing; it is easy to write "occupancy limit" and much harder to say whose home it applies to.</p>
+      <p>On the research side, the next step is the one this project stops short of: measuring from Sentinel-2 imagery how badly the corridors along each binding road actually burned, to set the modelled hazard map against the observed fire. After that, a time-varying simulation, a statewide run, and Ahmedabad.</p>
+
+      <div class="limits">
+        <h3>Limits that belong with the findings</h3>
+        <p>Every clearance time is a static bound: every vehicle leaves, demand shares are fixed, and the fire is represented by its final perimeter rather than its hour-by-hour spread. Lane counts are missing for {{butte_lanes_missing}} of Butte's road segments, which is why the Paradise figure is a range. Population is 2020 residents, and Paradise's population fell by more than four-fifths after the fire, so the Camp check uses pre-fire vehicle counts instead. The 2025 local hazard map for Los Angeles is still "recommended" rather than adopted everywhere. The self-routed figures come from a congestion model and should be read as indicating the size of the coordination problem, not as a forecast.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="col src">
+    <div class="label">Sources</div>
+    <p>Roads: © OpenStreetMap contributors (ODbL), via osmnx and Geofabrik extracts, September 2026. Hazard: CAL FIRE Fire Hazard Severity Zones, State Responsibility Area (effective 2024) and Local Responsibility Area (recommended 2025). Fire perimeters: CAL FIRE FRAP, release firep25_1. Population and vehicles: US Census 2020 blocks; American Community Survey 2014–18 and 2020–24. Graphs: SNAP roadNet-CA (Leskovec et al. 2009); 9th DIMACS Implementation Challenge. Fire timeline: Maranghides et al. (2021), <em>A Case Study of the Camp Fire: Fire Progression Timeline</em>, NIST TN 2135. Cascade model: Crucitti, Latora and Marchiori (2004), <em>Physical Review E</em> 69, 045104. Maximum occupancy: Cova (2005), <em>Natural Hazards Review</em> 6(3). Law: SB 99 (2019), Gov. Code §65302(g)(5); AB 747 (2019).</p>
+    <p>Method, every number and every correction along the way: <a href="https://github.com/chromadharma/ca-road-fragility/blob/main/docs/FINDINGS.md">FINDINGS.md</a>. The argument in full: <a href="https://github.com/chromadharma/ca-road-fragility/blob/main/docs/POLICY.md">POLICY.md</a>.</p>
+  </section>
+
+  <footer><span>Sahasrik Ragani · <a href="https://chromadharma.github.io">chromadharma.github.io</a></span><span>Charts in Viridis and Archivo. Code MIT; data under its own licences.</span></footer>
+</div>

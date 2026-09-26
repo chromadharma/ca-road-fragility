@@ -1,0 +1,31 @@
+{
+  "fire": "PALISADES 2025",
+  "group": [
+    "Malibu",
+    "Mandeville Canyon",
+    "Pacific Palisades",
+    "Palisades Highlands",
+    "Santa Monica Mountains"
+  ],
+  "prefire_population": 56841,
+  "prefire_vehicles": 42797.55554984964,
+  "n_disjoint": 19,
+  "mincut_capacity_vph": 50700.0,
+  "mincut_share_inside_final_perimeter": 0.0,
+  "clear_h_mincut": 0.8441332455591645,
+  "managed_vph": 14259.375,
+  "selfish_strict_vph": 3119.23828125,
+  "selfish_rationed_vph": 9061.860364990504,
+  "clear_h_managed": 3.0013626508770295,
+  "clear_h_selfish_bulk": 4.722822227011274,
+  "clear_h_selfish_last": 13.720514975437847,
+  "gap_bulk": 0.364498067763103,
+  "gap_last": 0.78125,
+  "clm_converged": true,
+  "clm_rationed_converged": false,
+  "binding_capacity_vph": 950.0,
+  "binding_share_inside_final_perimeter": 1.0,
+  "note": "final perimeter, not progression; vehicles=blocks, weights=vehicles; ACS B25044 with 5+ counted as 5; assumes every vehicle leaves",
+  "sens_2lane_mincut_vph": 53350.0,
+  "sens_2lane_clear_h_mincut": 0.8022034779728142
+}

@@ -1,0 +1,31 @@
+{
+  "fire": "CAMP 2018",
+  "group": [
+    "Paradise",
+    "Magalia",
+    "Concow"
+  ],
+  "prefire_population": 40143,
+  "prefire_vehicles": 32198.0,
+  "n_disjoint": 6,
+  "mincut_capacity_vph": 9650.0,
+  "mincut_share_inside_final_perimeter": 0.47150259067357514,
+  "clear_h_mincut": 3.336580310880829,
+  "managed_vph": 9273.046875,
+  "selfish_strict_vph": 3477.392578125,
+  "selfish_rationed_vph": 3477.392578125,
+  "clear_h_managed": 3.4722136568515944,
+  "clear_h_selfish_bulk": 9.259236418270918,
+  "clear_h_selfish_last": 9.259236418270918,
+  "gap_bulk": 0.625,
+  "gap_last": 0.625,
+  "clm_converged": true,
+  "clm_rationed_converged": true,
+  "binding_capacity_vph": 8900.0,
+  "binding_share_inside_final_perimeter": 0.42696629213483145,
+  "note": "final perimeter, not progression; vehicles=places2018, weights=even; ACS B25044 with 5+ counted as 5; assumes every vehicle leaves",
+  "sens_2lane_mincut_vph": 13050.0,
+  "sens_2lane_clear_h_mincut": 2.46727969348659,
+  "sens_2lane_managed_vph": 12846.09375,
+  "sens_2lane_clear_h_managed": 2.5064428632244726
+}

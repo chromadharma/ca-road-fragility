@@ -1,0 +1,95 @@
+# California study settings. Everything study-specific lives here, not in hazardnet/.
+
+crs:
+  metric: "EPSG:3310"          # NAD83 / California Albers (metres)
+
+part_a:
+  seed: 20260925
+  betweenness_sources: 500     # sampled sources for the betweenness ranking
+  efficiency_sources: 32       # sampled sources for global efficiency E(f)
+  random_seeds_s: 10           # random-removal repeats for S(f)
+  random_seeds_e: 3            # ... and for E(f), which is ~50x costlier
+  # finer steps at small f, where targeted removal does its damage
+  fractions_s: [0, .005, .01, .015, .02, .03, .04, .05, .06, .08, .10, .12, .14, .16,
+                .18, .20, .22, .25, .28, .30, .32, .35, .38, .40, .42, .45, .48, .50,
+                .55, .60, .65, .70, .80]
+  fractions_e: [0, .01, .02, .04, .06, .08, .10, .15, .20, .25, .30, .40, .50, .60]
+  dimacs_state_fips: "06"
+
+# Per-lane capacity by OSM class (vehicles/hour/lane, one direction) and the
+# lanes per direction assumed when OSM has no lanes tag.
+# Values: Highway Capacity Manual (HCM), 6th ed., base capacities -
+#   basic freeway 2,400 pc/h/ln; multilane highway 2,200; two-lane highway
+#   1,700 pc/h per direction; signalised urban street base saturation flow
+#   1,900 pc/h/ln scaled by an assumed green share of 0.5.
+# STATUS: from standard HCM figures, not yet checked page-by-page against the
+# manual - recorded as an open item in docs/FINDINGS.md. The headline ranking
+# is also published with unit capacity (n_disjoint) so it does not rest on these.
+capacity_table:
+  motorway:       {per_lane_vph: 2400, default_lanes_dir: 2}
+  motorway_link:  {per_lane_vph: 1800, default_lanes_dir: 1}
+  trunk:          {per_lane_vph: 2200, default_lanes_dir: 2}
+  trunk_link:     {per_lane_vph: 1800, default_lanes_dir: 1}
+  primary:        {per_lane_vph: 1700, default_lanes_dir: 1}
+  primary_link:   {per_lane_vph: 1500, default_lanes_dir: 1}
+  secondary:      {per_lane_vph: 1700, default_lanes_dir: 1}
+  secondary_link: {per_lane_vph: 1500, default_lanes_dir: 1}
+  tertiary:       {per_lane_vph: 950,  default_lanes_dir: 1}
+  tertiary_link:  {per_lane_vph: 950,  default_lanes_dir: 1}
+  residential:    {per_lane_vph: 950,  default_lanes_dir: 1}
+  unclassified:   {per_lane_vph: 950,  default_lanes_dir: 1}
+  living_street:  {per_lane_vph: 500,  default_lanes_dir: 1}
+  default:        {per_lane_vph: 950,  default_lanes_dir: 1}
+
+hazard:
+  field: FHSZ
+  levels: {1: moderate, 2: high, 3: very_high}
+  headline_threshold: 3        # D2: Very High
+  sensitivity_threshold: 2     # High+
+
+targets:                       # D1: three candidate rules, judged on a map first
+  R1: {classes: [motorway, trunk, primary], note: "any state route (approx. by OSM class)"}
+  R2: {classes: [motorway, trunk]}
+  R3: {classes: [motorway, trunk], outside_hazard_level: 2, min_distance_km: 5}
+  default: R3
+
+policy:
+  workers: 4                  # parallel worker processes (RAM-bound: ~1 GB each for LA)
+  rungs:                      # DESIGN 10.1; clearance targets from NIST TN 2135
+    L2_clear_h: 2.0           # Camp Fire main front at Pentz Rd ~2 h after ignition
+    L3_clear_h: 1.0           # first spot fires in Paradise ~75-80 min after ignition
+  widen_steps: 5              # I3: greedy one-lane additions per unit
+  contraflow_rounds: 3        # I2: successive binding cuts reversed
+  # I4: roads the drive filter drops but an emergency could use (fire roads,
+  # gated service roads), added at one lane
+  extra_highway: [track, service]
+  extra_exclude_service: [parking_aisle, parking, driveway, drive-through]
+  extra_exclude_tracktype: [grade5]
+  extra_lane_vph: 950
+
+areas:
+  butte:
+    county_fips: "06007"
+    road_buffer_km: 15
+    communities: tiger_places
+    osm_pbf_extended: osm/norcal-latest.osm.pbf   # I4 only; base graph is Overpass
+    reference_fires:
+      - {name: CAMP, year: 2018, unit: BTU}
+  la_foothills:
+    label: "Los Angeles, Palisades and Eaton fire clusters"
+    county_fips: "06037"
+    road_buffer_km: 10
+    communities: la_csa
+    # Study extent (DESIGN 5a, option 1 chosen 2026-09-25): two clusters, each
+    # = the Countywide Statistical Areas its 2025 fire perimeter touched. The
+    # retrospective evacuates, as one group, the areas with >= retro_min_share
+    # of their land inside the perimeter.
+    clusters_from_fires: true
+    overpass_max_query_km2: 100   # dense city: default sub-queries 504
+    # Overpass failed repeatedly on 2026-09-25 (gall unreachable, lambert 504);
+    # LA roads come from the Geofabrik SoCal extract instead (same drive filter)
+    osm_pbf: osm/socal-latest.osm.pbf
+    retro_min_share: 0.10
+    reference_fires:
+      - {name: PALISADES, year: 2025, unit: LDF}
+      - {name: EATON, year: 2025, unit: LAC}

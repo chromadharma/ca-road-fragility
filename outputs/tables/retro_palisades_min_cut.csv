@@ -1,0 +1,21 @@
+eid,name,ref,road_class,capacity_vph,lanes_imputed,hazard_max,inside_camp_perimeter
+19883,South Westlake Boulevard,CA 23,secondary,1700.0,False,3,False
+38223,West Sunset Boulevard,,secondary,3400.0,False,3,False
+38361,Agoura Road,,secondary,1700.0,True,3,False
+49111,Topanga Canyon Boulevard,CA 27,primary,1700.0,False,3,False
+76560,Cornell Road,,unclassified,950.0,True,3,False
+80306,Old Topanga Canyon Road,,tertiary,950.0,False,3,False
+87981,Calabasas Road,,secondary,1700.0,True,3,False
+91465,Mulholland Highway,,secondary,1700.0,False,3,False
+94046,Mulholland Drive,,residential,950.0,True,3,False
+103760,Entrada Drive,,tertiary,950.0,False,3,False
+118939,26th Street,,tertiary,950.0,True,3,False
+142299,Kanan Road,CR N9,primary,1700.0,False,3,False
+147510,Marlboro Street,,residential,950.0,True,3,False
+147512,Evanston Street,,residential,950.0,True,3,False
+170407,Avondale Avenue,,residential,950.0,True,3,False
+172426,Ventura Freeway,US 101,motorway,9600.0,False,3,False
+200619,Ocean Avenue,,tertiary,1900.0,False,3,False
+211880,,,motorway_link,1800.0,False,3,False
+211881,Ventura Freeway,US 101,motorway,9600.0,False,3,False
+250132,"['Palisades Beach Road', 'Pacific Coast Highway']",CA 1,trunk,6600.0,False,3,False

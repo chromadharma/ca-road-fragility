@@ -1,0 +1,8 @@
+eid,name,ref,road_class,capacity_vph,lanes_imputed,hazard_max,inside_final_perimeter
+15090,Clark Road,CA 191,secondary,1700.0,True,2,False
+15295,Skyway Road,,secondary,1700.0,True,2,False
+18352,Pentz Road,,tertiary,950.0,True,2,True
+19903,Jordan Hill Road,,residential,950.0,True,3,True
+20767,Honey Run Road,,tertiary,950.0,True,2,True
+21019,Deer Creek Highway,CA 32,primary,1700.0,False,3,False
+23030,Neal Road,,tertiary,950.0,False,3,True

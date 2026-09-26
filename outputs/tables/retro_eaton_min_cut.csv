@@ -1,0 +1,46 @@
+eid,name,ref,road_class,capacity_vph,lanes_imputed,hazard_max,inside_camp_perimeter
+2115,Lincoln Avenue,,secondary,3400.0,False,0,False
+32723,Casitas Avenue,,residential,950.0,True,1,False
+33311,North Raymond Avenue,,tertiary,950.0,True,0,False
+35756,Dexter Avenue,,residential,950.0,True,0,False
+36904,North Garfield Avenue,,residential,950.0,True,0,False
+57645,Highland Oaks Drive,,residential,950.0,False,3,False
+62652,Mayfair Drive,,residential,950.0,True,0,False
+69843,North Fair Oaks Avenue,,primary,3400.0,False,0,False
+75994,North Martelo Avenue,,residential,950.0,True,0,False
+91981,North Hill Avenue,,tertiary,950.0,False,0,False
+91989,East Washington Boulevard,,secondary,1700.0,False,0,False
+92818,Rancho Road,,residential,950.0,True,0,False
+94892,Greenhill Road,,tertiary,950.0,False,0,False
+100053,North Lake Avenue,,secondary,3400.0,False,0,False
+106171,Roxbury Drive,,residential,950.0,True,0,False
+106178,North Craig Avenue,,residential,950.0,True,0,False
+106403,East Washington Boulevard,,secondary,1700.0,True,0,False
+107379,Allen Avenue,,tertiary,950.0,True,0,False
+111702,Navarro Avenue,,residential,950.0,False,0,False
+113181,North Sierra Bonita Avenue,,residential,950.0,True,0,False
+113185,Sinaloa Avenue,,residential,950.0,True,0,False
+117916,Hacienda Drive,,residential,950.0,True,0,False
+117918,Rodeo Road,,residential,950.0,True,0,False
+119027,North Los Robles Avenue,,tertiary,950.0,False,0,False
+119031,El Molino Avenue,,tertiary,950.0,False,0,False
+119037,North Marengo Avenue,,tertiary,950.0,True,0,False
+126833,Mentone Avenue,,residential,950.0,True,0,False
+130165,El Sereno Avenue,,residential,950.0,True,0,False
+130535,North Mar Vista Avenue,,residential,950.0,False,0,False
+148751,North Michillinda Avenue,,primary,1700.0,False,0,False
+149597,North Holliston Avenue,,residential,950.0,True,0,False
+163800,Glen Avenue,,residential,950.0,False,0,False
+163840,North Michigan Avenue,,residential,950.0,True,0,False
+166868,North Catalina Avenue,,residential,950.0,True,0,False
+179698,Arbolada Drive,,residential,950.0,False,0,False
+179707,North Baldwin Avenue,,tertiary,950.0,True,0,False
+190815,"['Oak Grove Drive', 'Woodbury Road']",,primary,3400.0,False,3,False
+194045,East Sierra Madre Boulevard,,primary,5100.0,False,0,False
+202264,Altadena Drive,,secondary,3400.0,False,0,False
+202328,Sierra Madre Villa Avenue,,secondary,1700.0,True,0,False
+206078,North Santa Anita Avenue,,tertiary,950.0,True,1,False
+206496,Hastings Ranch Drive,,residential,950.0,False,0,False
+206868,Arroyo Boulevard,,secondary,3400.0,False,3,False
+255217,San Carlos Road,,residential,950.0,True,0,False
+257455,,,motorway_link,1800.0,True,3,False

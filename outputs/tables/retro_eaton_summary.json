@@ -1,0 +1,29 @@
+{
+  "fire": "EATON 2025",
+  "group": [
+    "Sierra Madre",
+    "Altadena",
+    "Kinneloa Mesa"
+  ],
+  "prefire_population": 55363,
+  "prefire_vehicles": 39596.984137998894,
+  "n_disjoint": 34,
+  "mincut_capacity_vph": 65450.0,
+  "mincut_share_inside_final_perimeter": 0.0,
+  "clear_h_mincut": 0.6049959379373399,
+  "managed_vph": 46530.859375,
+  "selfish_strict_vph": 2908.1787109375,
+  "selfish_rationed_vph": 6931.372232714897,
+  "clear_h_managed": 0.8509832973184561,
+  "clear_h_selfish_bulk": 5.7127193301072285,
+  "clear_h_selfish_last": 13.615732757095298,
+  "gap_bulk": 0.8510370896687335,
+  "gap_last": 0.9375,
+  "clm_converged": true,
+  "clm_rationed_converged": false,
+  "binding_capacity_vph": 950.0,
+  "binding_share_inside_final_perimeter": 0.0,
+  "note": "final perimeter, not progression; vehicles=blocks, weights=vehicles; ACS B25044 with 5+ counted as 5; assumes every vehicle leaves",
+  "sens_2lane_mincut_vph": 72100.0,
+  "sens_2lane_clear_h_mincut": 0.5491953417198182
+}

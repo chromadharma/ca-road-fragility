@@ -1,0 +1,8 @@
+# conda alternative to `make env` (uv + requirements.txt, the tested route)
+name: ca-road-fragility
+channels: [conda-forge]
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - -r requirements.txt
